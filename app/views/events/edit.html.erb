@@ -1,12 +1,15 @@
 <% content_for :title, "Editing event" %>
 
-<h1>Editing event</h1>
 
-<%= render "form", event: @event %>
+
+<div class ="form-wrapper">
+  <h1>Modifier un événement</h1>
+  <%= render "form", event: @event %>
+</div>
 
 <br>
 
 <div>
   <%= link_to "Show this event", @event %> |
-  <%= link_to "Back to events", events_path %>
+  <%= link_to "Retour à l'accueil", events_path %>
 </div>

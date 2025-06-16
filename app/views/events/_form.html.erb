@@ -12,41 +12,41 @@
   <% end %>
 
   <div>
-    <%= form.label :start_date, style: "display: block" %>
+    <%= form.label :start_date, "Date de début", style: "display: block" %>
     <%= form.datetime_field :start_date %>
   </div>
 
   <div>
-    <%= form.label :duration, style: "display: block" %>
+    <%= form.label :duration, "Durée (en minutes)", style: "display: block" %>
     <%= form.number_field :duration %>
   </div>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :title, "Titre", style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description %>
+    <%= form.label :description, "Description", style: "display: block" %>
+    <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.label :price, style: "display: block" %>
+    <%= form.label :price, "Prix (€)", style: "display: block" %>
     <%= form.number_field :price %>
   </div>
 
   <div>
-    <%= form.label :location, style: "display: block" %>
+    <%= form.label :location, "Lieu", style: "display: block" %>
     <%= form.text_field :location %>
   </div>
 
   <div>
-    <%= form.label :admin_id, style: "display: block" %>
-    <%= form.number_field :admin_id %>
+    <%= form.label :admin_id, "Organisateur", style: "display: block" %>
+    <%= form.collection_select :admin_id, User.all, :id, :full_name, prompt: "Choisir un organisateur" %>
   </div>
-
   <div>
-    <%= form.submit %>
+    <%= form.submit "Créer l'événement", class: "button" %>
   </div>
+ 
 <% end %>

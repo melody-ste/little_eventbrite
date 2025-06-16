@@ -1,16 +1,21 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Events" %>
 
-<h1>Events</h1>
-
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+<div class="hero">
+  <div class="container">
+    <h1>Little Eventbrite</h1>
+    <h3>Organisez ou participez à des événements passionnants partout en France.</h3>
+  </div>
 </div>
 
-<%= link_to "New event", new_event_path %>
+<div class="form-wrapper">
+  <h2>Événements à venir</h2>
+
+  <div class="row events-grid">
+    <% @events.each do |event| %>
+      <div class="event-card">
+        <%= render event %>
+        <%= link_to "Voir plus", event, class: "button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

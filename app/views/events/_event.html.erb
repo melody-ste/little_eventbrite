@@ -1,37 +1,10 @@
-<div id="<%= dom_id event %>">
-  <p>
-    <strong>Start date:</strong>
-    <%= event.start_date %>
-  </p>
+<div id="<%= dom_id event %>" class="card" style="padding: 2rem; border: 1px solid #e1e1e1; border-radius: 5px; margin-bottom: 2rem; background-color: #ffffff;">
+  <h3 style="margin-top: 0;"><%= event.title %></h3>
 
-  <p>
-    <strong>Duration:</strong>
-    <%= event.duration %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= event.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= event.description %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= event.price %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= event.location %>
-  </p>
-
-  <p>
-    <strong>Admin:</strong>
-    <%= event.admin_id %>
-  </p>
-
-</div>
+  <p><strong>Date de début :</strong> <%= l(event.start_date, format: :long) %></p>
+  <p><strong>Durée :</strong> <%= event.duration %> minutes</p>
+  <p><strong>Description :</strong> <%= truncate(event.description, length: 150) %></p>
+  <p><strong>Lieu :</strong> <%= event.location %></p>
+  <p><strong>Prix :</strong> <%= number_to_currency(event.price, unit: "€", separator: ",", delimiter: " ") %></p>
+  <p><strong>Organisateur :</strong> <%= event.admin.first_name %> <%= event.admin.last_name %></p>
+  </div>
