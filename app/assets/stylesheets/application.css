@@ -6,46 +6,55 @@ html, body {
 .navbar {
     background-color: #cbe8f4;
     padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .navbar ul {
   list-style: none;
   display: flex;
   gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar li {
   position: relative;
 }
 
+.nav-right {
+  margin-left: auto;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
 .dropdown-menu {
-  display: none;
+  display: none !important;
   position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   list-style: none;
-  min-width: 150px;
+  padding: 1rem;
+  margin: 0;
   z-index: 1000;
-}
-
-.dropdown-menu li {
-  padding: 5px 15px;
-}
-
-.dropdown-menu li:hover {
-  background-color: #eee;
+  border-radius: 4px;
 }
 
 .dropdown:hover .dropdown-menu {
-  display: block;
+  display: block!important;
 }
 
-.dropdown-toggle {
-  cursor: pointer;
+.dropdown-menu li {
+  margin-bottom: 0.5rem;
 }
 
+.dropdown-menu li:last-child {
+  margin-bottom: 0;
+}
 
 
 .hero {
@@ -94,3 +103,12 @@ html, body {
   box-sizing: border-box;
 }
 
+.button-small {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,10 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="form-wrapper">
+  <h2>Mon profil</h2>
 
-<%= render @user %>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <p><strong>Prénom :</strong> <%= @user.first_name.presence || "Non renseigné" %></p>
+  <p><strong>Nom :</strong> <%= @user.last_name.presence || "Non renseigné" %></p>
+  <p><strong>Email :</strong> <%= @user.email %></p>
+  <p><strong>Description :</strong> <%= @user.description.presence || "Aucune description" %></p>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+
+  <h3>Mes événements</h3>
+  <ul>
+    <% @user.administered_events.each do |event| %>
+      <li><%= link_to event.title, event_path(event) %></li>
+    <% end %>
+  </ul>
+
+  <div class="profile-actions">
+    <%= link_to "Modifier mes infos de connexion", edit_user_registration_path, class: "button" %>
+    <%= link_to "Modifier prénom/nom/description", edit_user_path(@user), class: "button" %>
+    <%= button_to "supprimer le compte", @user, method: :delete %>
+  </div>
 </div>

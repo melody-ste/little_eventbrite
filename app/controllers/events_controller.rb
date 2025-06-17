@@ -1,70 +1,62 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_admin!, only: [:edit, :update, :destroy]
 
-  # GET /events or /events.json
   def index
     @events = Event.all
   end
 
-  # GET /events/1 or /events/1.json
   def show
   end
 
-  # GET /events/new
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
   end
 
-  # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+    @event.admin = current_user
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: "Event was successfully created." }
-        
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        
-      end
+    if @event.save
+      redirect_to @event, notice: "Événement créé avec succès."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /events/1 or /events/1.json
+  
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: "Event was successfully updated." }
-        
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        
-      end
+    if @event.update(event_params)
+      redirect_to @event, notice: "Événement mis à jour avec succès."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /events/1 or /events/1.json
+  
   def destroy
     @event.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to events_path, status: :see_other, notice: "Event was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to events_path, status: :see_other, notice: "Événement supprimé avec succès."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_event
-      @event = Event.find(params.expect(:id))
+      @event = Event.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    
     def event_params
-      params.expect(event: [ :start_date, :duration, :title, :description, :price, :location, :admin_id ])
+      params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location)
+    end
+
+    def authorize_admin!
+      unless @event.admin == current_user
+        redirect_to events_path, alert: "Vous n’êtes pas autorisé à modifier ou supprimer cet événement."
+      end
     end
 end

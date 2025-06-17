@@ -41,10 +41,7 @@
     <%= form.text_field :location %>
   </div>
 
-  <div>
-    <%= form.label :admin_id, "Organisateur", style: "display: block" %>
-    <%= form.collection_select :admin_id, User.all, :id, :full_name, prompt: "Choisir un organisateur" %>
-  </div>
+  
   <div>
     <%= form.submit "Créer l'événement", class: "button" %>
   </div>

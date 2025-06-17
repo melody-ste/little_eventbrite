@@ -1,7 +1,12 @@
 <div  class ="form-wrapper">
   <%= render @event %>
-  <%= link_to "Modifier cette évènement", edit_event_path(@event) %> |
-  <%= link_to "Retour à l'accueil", events_path %>
 
-  <%= button_to "Supprimer l'évènement", @event, method: :delete %>
+  <% if @event.admin == current_user %>
+    <%= link_to "Modifier cette évènement", edit_event_path(@event) %> |
+    
+
+    <%= button_to "Supprimer l'évènement", @event, method: :delete %>
+  <% end %>
+
+  <%= link_to "Retour à l'accueil", events_path %>
 </div>
