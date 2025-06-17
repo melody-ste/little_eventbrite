@@ -41,7 +41,7 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "Mon profil", user_path(current_user) %></li>
                 <%= form_with url: destroy_user_session_path, method: :delete, local: true do %>
-                  <%= submit_tag "Déconnexion", class: "button-small" %>
+                  <button type="submit" class="button-small">Déconnexion</button>
                 <% end %>
               </ul>
             </li>

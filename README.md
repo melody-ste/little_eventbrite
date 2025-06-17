@@ -1,24 +1,40 @@
-# README
+# LITTLE EVENTBRITE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LITTLE EVENTBRITE is a Ruby on Rails application that allows users to browse and participate in events happening all around France. Users can create new events or join existing ones.
 
-Things you may want to cover:
+## Features
+- Browse a list of events
+- Create, edit, and delete your own events
+- Register as a participant for events
+- Receive email notifications when new participants register
 
-* Ruby version
+## Technology Stack
+- Ruby version: 3.4.2  
+- Rails version: 8.x
 
-* System dependencies
 
-* Configuration
+### Live Demo
+To see the live application, visit:  
 
-* Database creation
 
-* Database initialization
+### Running Locally
 
-* How to run the test suite
+1. Clone the repository:  
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Install dependencies:
+   ```bash
+    bundle install
 
-* Deployment instructions
+3. Setup the database:
+    ```bash
+    rails db:setup
 
-* ...
+4. Start the Rails server:
+    ```bash
+    rails server
+
+5. Open your browser and go to:
+http://localhost:3000

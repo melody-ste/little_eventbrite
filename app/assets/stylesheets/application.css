@@ -38,8 +38,8 @@ html, body {
   background-color: #f4f4f4;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   list-style: none;
-  padding: 1rem;
-  margin: 0;
+  padding: 2rem;
+  margin: 0rem;
   z-index: 1000;
   border-radius: 4px;
 }
@@ -104,11 +104,13 @@ html, body {
 }
 
 .button-small {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  background-color: #e74c3c;
+  all: unset; /* remet à zéro les styles par défaut */
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #ad5aa9;
   color: white;
-  border: none;
   border-radius: 4px;
   cursor: pointer;
+  display: inline-block;
+  text-align: center;
 }
