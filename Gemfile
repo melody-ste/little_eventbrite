@@ -54,7 +54,6 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'faker'
   gem "better_errors"
   gem "binding_of_caller"
 end
@@ -66,3 +65,7 @@ group :test do
 end
 
 gem "devise"
+gem 'dotenv-rails'
+gem 'stripe'
+gem 'table_print'
+gem 'faker'

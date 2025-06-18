@@ -2,11 +2,19 @@
   <%= render partial: "event", locals: { event: @event } %>
 
   <% if @event.admin == current_user %>
-    <%= link_to "Modifier cette évènement", edit_event_path(@event) %> |
-    
+    <%= link_to "Voir les participants", attendances_index_event_path(@event) %>
+
+    | <%= link_to "Modifier cette évènement", edit_event_path(@event) %> 
+    <br>
 
     <%= button_to "Supprimer l'évènement", @event, method: :delete %>
   <% end %>
+
+  <% if user_signed_in? && current_user != @event.admin && !@event.participants.include?(current_user) %>
+    <%= button_to "Rejoindre l'événement (Paiement)", checkout_path(event_id: @event.id), method: :post, data: { turbo: false } %>
+  <% end %>
+
+ 
 
   <%= link_to "Retour à l'accueil", events_path %>
 </div>
