@@ -1,20 +1,27 @@
-<div  class ="form-wrapper">
-  <%= render partial: "event", locals: { event: @event } %>
+<div class="container my-5">
+  <div class="card bg-dark text-white shadow p-5">
+    <div class="mb-4">
+      <h2 class="text-uppercase fw-bold text-center">Détails de l’événement</h2>
+    </div>
 
-  <% if @event.admin == current_user %>
-    <%= link_to "Voir les participants", attendances_index_event_path(@event) %>
+    <%= render partial: "event", locals: { event: @event } %>
 
-    | <%= link_to "Modifier cette évènement", edit_event_path(@event) %> 
-    <br>
+    <% if @event.admin == current_user %>
+      <div class="mt-5 text-center">
+        <%= link_to "Voir les participants", attendances_index_event_path(@event), class: "btn btn-outline-light btn-xl me-3 mb-3 text-uppercase fw-bold" %>
+        <%= link_to "Modifier l’événement", edit_event_path(@event), class: "btn btn-outline-warning btn-xl me-3 mb-3 text-uppercase fw-bold" %>
+        <%= button_to "Supprimer l’événement", @event, method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger btn-xl mb-3 text-uppercase fw-bold" %>
+      </div>
+    <% end %>
 
-    <%= button_to "Supprimer l'évènement", @event, method: :delete %>
-  <% end %>
+    <% if user_signed_in? && current_user != @event.admin && !@event.participants.include?(current_user) %>
+      <div class="mt-4 text-center">
+        <%= button_to "Rejoindre l'événement (Paiement)", checkout_path(event_id: @event.id), method: :post, data: { turbo: false }, class: "btn btn-primary btn-xl text-uppercase fw-bold" %>
+      </div>
+    <% end %>
 
-  <% if user_signed_in? && current_user != @event.admin && !@event.participants.include?(current_user) %>
-    <%= button_to "Rejoindre l'événement (Paiement)", checkout_path(event_id: @event.id), method: :post, data: { turbo: false } %>
-  <% end %>
-
- 
-
-  <%= link_to "Retour à l'accueil", events_path %>
+    <div class="mt-5 text-center">
+      <%= link_to "Retour à l'accueil", events_path, class: "btn btn-secondary btn-xl text-uppercase fw-bold" %>
+    </div>
+  </div>
 </div>

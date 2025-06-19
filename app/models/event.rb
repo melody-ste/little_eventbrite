@@ -3,10 +3,11 @@ class Event < ApplicationRecord
 
   has_many :attendances
   has_many :participants, through: :attendances, source: :user
-
+  has_one_attached :photo
   
   validate :start_date_cannot_be_in_the_past
   validate :duration_multiple_of_five
+  validate :photo_presence
 
   validates :start_date, presence: true
   validates :duration, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -28,6 +29,10 @@ class Event < ApplicationRecord
     if duration.present? && duration % 5 != 0
       errors.add(:duration, "doit être un multiple de 5")
     end
+  end
+
+  def photo_presence
+    errors.add(:photo, "doit être ajoutée") unless photo.attached?
   end
 
 end

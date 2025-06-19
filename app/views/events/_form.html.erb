@@ -1,9 +1,8 @@
-<%= form_with(model: event) do |form| %>
+<%= form_with(model: event, html: { class: "needs-validation" }) do |form| %>
   <% if event.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="fw-bold"><%= pluralize(event.errors.count, "erreur") %> empêchent l'enregistrement :</h4>
+      <ul class="mb-0">
         <% event.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,39 +10,42 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :start_date, "Date de début", style: "display: block" %>
-    <%= form.datetime_field :start_date %>
+  <div class="mb-3">
+    <%= form.label :start_date, "Date de début", class: "form-label text-uppercase fw-bold" %>
+    <%= form.datetime_field :start_date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :duration, "Durée (en minutes)", class: "form-label text-uppercase fw-bold" %>
+    <%= form.number_field :duration, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title, "Titre", class: "form-label text-uppercase fw-bold" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, "Description", class: "form-label text-uppercase fw-bold" %>
+    <%= form.text_area :description, class: "form-control", rows: 5 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :price, "Prix (€)", class: "form-label text-uppercase fw-bold" %>
+    <%= form.number_field :price, step: 0.01, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :location, "Lieu", class: "form-label text-uppercase fw-bold" %>
+    <%= form.text_field :location, class: "form-control" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :photo, "Photo de l'événement", class: "form-label text-uppercase fw-bold" %>
+    <%= form.file_field :photo, direct_upload: true, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :duration, "Durée (en minutes)", style: "display: block" %>
-    <%= form.number_field :duration %>
+    <%= form.submit event.new_record? ? "Créer l'événement" : "Mettre à jour", class: "btn btn-primary btn-xl text-uppercase" %>
   </div>
-
-  <div>
-    <%= form.label :title, "Titre", style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :description, "Description", style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :price, "Prix (€)", style: "display: block" %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div>
-    <%= form.label :location, "Lieu", style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  
-  <div>
-    <%= form.submit "Créer l'événement", class: "button" %>
-  </div>
- 
 <% end %>

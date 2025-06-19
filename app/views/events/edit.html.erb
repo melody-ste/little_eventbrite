@@ -1,17 +1,16 @@
-<% content_for :title, "Editing event" %>
+<% content_for :title, "Modifier un événement" %>
 
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="text-uppercase fw-bold">Modifier un événement</h1>
+  </div>
 
+  <div class="mb-4">
+    <%= render "form", event: @event %>
+  </div>
 
-<div class ="form-wrapper">
-  <h1>Modifier un événement</h1>
-  <%= render "form", event: @event %>
-  <br>
-  <div>
-    <%= link_to "Retour à l'événement", @event %> |
-    <%= link_to "Retour à l'accueil", events_path %>
+  <div class="d-flex gap-3">
+    <%= link_to "← Retour à l'événement", @event, class: "btn btn-outline-secondary" %>
+    <%= link_to "Accueil", events_path, class: "btn btn-primary" %>
   </div>
 </div>
-
-
-
-

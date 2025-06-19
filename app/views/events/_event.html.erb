@@ -1,11 +1,23 @@
-<div id="<%= dom_id event %>" class="card" style="padding: 2rem; border: 1px solid #e1e1e1; border-radius: 5px; margin-bottom: 2rem; background-color: #ffffff;">
-  <h3 style="margin-top: 0;"><%= event.title %></h3>
+<div id="<%= dom_id event %>" class="card h-100 shadow border-0">
+  <div class="card-body">
+    <h3 class="card-title text-uppercase fw-bold"><%= event.title %></h3>
 
-  <p><strong>Date de début :</strong> <%= l(event.start_date, format: :long) %></p>
-  <p><strong>Durée :</strong> <%= event.duration %> minutes</p>
-  <p><strong>Description :</strong> <%= truncate(event.description, length: 150) %></p>
-  <p><strong>Lieu :</strong> <%= event.location %></p>
-  <p><strong>Prix :</strong> <%= number_to_currency(event.price, unit: "€", separator: ",", delimiter: " ") %></p>
-  <p><strong>Organisateur :</strong> <%= event.admin.email %></p>
-  <p><strong>Nombre d'inscrits :</strong> <%= event.attendances.count %></p>
+    <ul class="list-unstyled mb-4">
+      <li><strong>Date de début :</strong> <%= l(event.start_date, format: :long) %></li>
+      <li><strong>Durée :</strong> <%= event.duration %> minutes</li>
+      <li><strong>Description :</strong> <%= truncate(event.description, length: 150) %></li>
+      <li><strong>Lieu :</strong> <%= event.location %></li>
+      <li><strong>Prix :</strong> <%= number_to_currency(event.price, unit: "€", separator: ",", delimiter: " ") %></li>
+      <li><strong>Organisateur :</strong> <%= event.admin.email %></li>
+      <li><strong>Nombre d'inscrits :</strong> <%= event.attendances.count %></li>
+    </ul>
+
+    <% if event.photo.attached? %>
+      <div class="text-center mb-3">
+        <%= image_tag event.photo, class: "img-fluid rounded", alt: event.title %>
+      </div>
+    <% else %>
+      <p class="text-muted fst-italic">Aucune photo</p>
+    <% end %>
   </div>
+</div>

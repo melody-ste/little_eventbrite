@@ -1,18 +1,15 @@
-<% content_for :title, "New event" %>
+<% content_for :title, "Créer un événement" %>
 
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="text-uppercase fw-bold">Créer un événement</h1>
+  </div>
 
-
-<div class ="form-wrapper">
-
-  <h1>Créer un événement</h1>
-
-  <%= render "form", event: @event %>
-
-  <br>
+  <div class="mb-4">
+    <%= render "form", event: @event %>
+  </div>
 
   <div>
-    <%= link_to "Back to events", events_path %>
+    <%= link_to "← Retour aux événements", events_path, class: "btn btn-outline-secondary" %>
   </div>
 </div>
-
-
