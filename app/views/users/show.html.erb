@@ -1,13 +1,36 @@
 <div class="container py-4">
   <h2 class="text-uppercase fw-bold mb-4">Mon profil</h2>
 
-  <div class="card p-4 mb-5 shadow-sm bg-white rounded">
-    <p><strong class="text-uppercase">Prénom :</strong> <%= @user.first_name.presence || "Non renseigné" %></p>
-    <p><strong class="text-uppercase">Nom :</strong> <%= @user.last_name.presence || "Non renseigné" %></p>
-    <p><strong class="text-uppercase">Email :</strong> <%= @user.email %></p>
-    <p><strong class="text-uppercase">Description :</strong> <%= @user.description.presence || "Aucune description" %></p>
+  <div class="row mb-5">
+    <!-- Partie avatar à gauche -->
+    <div class="col-md-3">
+      <div class="card p-4 shadow-sm bg-white rounded d-flex flex-column align-items-center gap-4">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar.variant(resize_to_limit: [150, 150]), class: "rounded-circle border border-secondary" %>
+        <% else %>
+          <%= image_tag "default_avatar.png", width: 150, height: 150, class: "rounded-circle border border-secondary" %>
+        <% end %>
+
+        <h4 class="text-uppercase fw-bold mb-3">Changer d'avatar</h4>
+        <%= form_tag user_avatars_path(@user), multipart: true, class: "d-flex flex-column gap-2 w-100" do %>
+          <%= file_field_tag :avatar, class: "form-control form-control-sm" %>
+          <%= submit_tag "Mettre à jour", class: "btn btn-primary btn-sm btn-xs align-self-start" %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Partie infos profil à droite -->
+    <div class="col-md-9">
+      <div class="card p-4 shadow-sm bg-white rounded h-100">
+        <p><strong class="text-uppercase">Prénom :</strong> <%= @user.first_name.presence || "Non renseigné" %></p>
+        <p><strong class="text-uppercase">Nom :</strong> <%= @user.last_name.presence || "Non renseigné" %></p>
+        <p><strong class="text-uppercase">Email :</strong> <%= @user.email %></p>
+        <p><strong class="text-uppercase">Description :</strong> <%= @user.description.presence || "Aucune description" %></p>
+      </div>
+    </div>
   </div>
 
+  
   <h3 class="fw-bold mb-3">Mes événements</h3>
   <% if @user.administered_events.any? %>
     <ul class="list-group mb-5">

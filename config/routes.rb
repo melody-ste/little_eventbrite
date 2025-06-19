@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :events do
     get 'attendances_index', on: :member
   end
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy] do 
+    post 'avatars', to: 'users#upload_avatar', as: :avatars
+  end
   post 'checkout', to: 'checkout#create'
   get 'checkout/success', to: 'checkout#success'
   

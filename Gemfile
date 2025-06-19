@@ -69,3 +69,4 @@ gem 'dotenv-rails'
 gem 'stripe'
 gem 'table_print'
 gem 'faker'
+gem "image_processing", "~> 1.2"

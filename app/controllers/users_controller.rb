@@ -59,6 +59,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def upload_avatar
+    @user = User.find(params[:user_id])
+    if params[:avatar].present?
+      @user.avatar.attach(params[:avatar])
+      flash[:notice] = "Avatar mis à jour !"
+    else
+      flash[:alert] = "Aucun fichier sélectionné."
+    end
+    redirect_to @user
+  end
+
   private
       def set_user
         @user = User.find(params[:id])
