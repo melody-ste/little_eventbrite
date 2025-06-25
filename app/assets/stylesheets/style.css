@@ -1,0 +1,95 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/*     IMAGE      */
+
+.profile-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+}
+
+.event-card img  {
+  height: 400px;        
+  width: 100%;           
+  object-fit: cover;    
+}
+
+.presentation-img {
+  max-width: 60%;
+  height: auto;
+}
+
+.similar-event-img {
+  height: 200px;            
+  object-fit: cover;          
+  border-radius: 0.5rem;    
+}
+
+/*     BANNERS     */
+
+.hero-banner {
+  background-image: url('banner_1.jpg'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 850px;
+  position: relative;
+  padding: 3rem 0;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  
+  z-index: 1;
+}
+
+.hero-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text-right {
+  padding-right: 2rem;
+  margin-top: 2rem; 
+}
+
+.page-banner {
+  background: url('banner_2.jpg') no-repeat center center;
+  background-size: cover;
+  height: 250px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.page-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+}
+
+.page-banner h2 {
+  position: relative;
+  z-index: 2;
+}

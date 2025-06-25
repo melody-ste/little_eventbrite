@@ -1,7 +1,10 @@
+<% content_for :banner_title, "Participants" %>
+<%= render "shared/page_banner" %>
+
 <div class="container py-5">
-  <div class="text-center mb-5">
+  <!-- <div class="text-center mb-5">
     <h2 class="text-uppercase fw-bold">Participants à <%= @event.title %></h2>
-  </div>
+  </div> -->
 
   <% if @event.participants.any? %>
     <div class="mb-4">

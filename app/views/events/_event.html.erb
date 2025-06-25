@@ -1,23 +1,32 @@
-<div id="<%= dom_id event %>" class="card h-100 shadow border-0">
-  <div class="card-body">
-    <h3 class="card-title text-uppercase fw-bold"><%= event.title %></h3>
-
-    <ul class="list-unstyled mb-4">
-      <li><strong>Date de début :</strong> <%= l(event.start_date, format: :long) %></li>
-      <li><strong>Durée :</strong> <%= event.duration %> minutes</li>
-      <li><strong>Description :</strong> <%= truncate(event.description, length: 150) %></li>
-      <li><strong>Lieu :</strong> <%= event.location %></li>
-      <li><strong>Prix :</strong> <%= number_to_currency(event.price, unit: "€", separator: ",", delimiter: " ") %></li>
-      <li><strong>Organisateur :</strong> <%= event.admin.email %></li>
-      <li><strong>Nombre d'inscrits :</strong> <%= event.attendances.count %></li>
-    </ul>
+<div id="<%= dom_id event %>" class="col-md-6">
+  <div class="card h-100 shadow border-0">
+    <h3 class="card-header text-uppercase"><%= event.title %></h3>
 
     <% if event.photo.attached? %>
-      <div class="text-center mb-3">
-        <%= image_tag event.photo, class: "img-fluid rounded", alt: event.title %>
+      <div class="card-body p-0">
+        <%= image_tag event.photo, class: "img-fluid w-100", alt: event.title %>
       </div>
     <% else %>
-      <p class="text-muted fst-italic">Aucune photo</p>
+      <div class="card-body text-center text-muted fst-italic">
+        Aucune photo disponible
+      </div>
     <% end %>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Lieu :</strong> <%= event.location %></li>
+      <li class="list-group-item"><strong>Date :</strong> <%= l(event.start_date, format: :long) %></li>
+      <li class="list-group-item"><strong>Participants :</strong> <%= event.attendances.count %></li>
+      <li class="list-group-item"><strong>Description :</strong> <%= truncate(event.description, length: 150) %></li>
+      <li class="list-group-item"><strong>Prix :</strong> <%= number_to_currency(event.price, unit: "€", separator: ",", delimiter: " ") %></li>
+      <li class="list-group-item"><strong>Organisateur :</strong> <%= event.admin.email %></li>
+    </ul>
+
+    <div class="card-body text-center">
+      <%= link_to "Voir plus", event_path(event), class: "btn btn-primary" %>
+    </div>
+
+    <div class="card-footer text-muted text-end">
+      Mis à jour <%= time_ago_in_words(event.updated_at) %> ago
+    </div>
   </div>
 </div>

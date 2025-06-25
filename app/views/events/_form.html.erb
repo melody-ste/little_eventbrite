@@ -1,7 +1,7 @@
 <%= form_with(model: event, html: { class: "needs-validation" }) do |form| %>
   <% if event.errors.any? %>
     <div class="alert alert-danger">
-      <h4 class="fw-bold"><%= pluralize(event.errors.count, "erreur") %> empêchent l'enregistrement :</h4>
+      <h5 class="fw-bold"><%= pluralize(event.errors.count, "erreur") %> empêchent l'enregistrement :</h5>
       <ul class="mb-0">
         <% event.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,41 +11,41 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :start_date, "Date de début", class: "form-label text-uppercase fw-bold" %>
+    <%= form.label :start_date, "Date de début", class: "form-label fw-semibold text-uppercase" %>
     <%= form.datetime_field :start_date, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :duration, "Durée (en minutes)", class: "form-label text-uppercase fw-bold" %>
+    <%= form.label :duration, "Durée (en minutes)", class: "form-label fw-semibold text-uppercase" %>
     <%= form.number_field :duration, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :title, "Titre", class: "form-label text-uppercase fw-bold" %>
+    <%= form.label :title, "Titre", class: "form-label fw-semibold text-uppercase" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :description, "Description", class: "form-label text-uppercase fw-bold" %>
-    <%= form.text_area :description, class: "form-control", rows: 5 %>
+    <%= form.label :description, "Description", class: "form-label fw-semibold text-uppercase" %>
+    <%= form.text_area :description, rows: 5, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :price, "Prix (€)", class: "form-label text-uppercase fw-bold" %>
+    <%= form.label :price, "Prix (€)", class: "form-label fw-semibold text-uppercase" %>
     <%= form.number_field :price, step: 0.01, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :location, "Lieu", class: "form-label text-uppercase fw-bold" %>
+    <%= form.label :location, "Lieu", class: "form-label fw-semibold text-uppercase" %>
     <%= form.text_field :location, class: "form-control" %>
   </div>
 
   <div class="mb-4">
-    <%= form.label :photo, "Photo de l'événement", class: "form-label text-uppercase fw-bold" %>
+    <%= form.label :photo, "Photo de l'événement", class: "form-label fw-semibold text-uppercase" %>
     <%= form.file_field :photo, direct_upload: true, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.submit event.new_record? ? "Créer l'événement" : "Mettre à jour", class: "btn btn-primary btn-xl text-uppercase" %>
+    <%= form.submit event.new_record? ? "Créer l'événement" : "Mettre à jour", class: "btn btn-primary w-100 text-uppercase" %>
   </div>
 <% end %>

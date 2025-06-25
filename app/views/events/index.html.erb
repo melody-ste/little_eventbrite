@@ -1,31 +1,14 @@
 <% content_for :title, "Events" %>
 
 <!-- Hero Section -->
-<section class="py-5 bg-dark text-white text-center">
-  <div class="container px-5">
-    <h1 class="display-4 text-uppercase fw-bold">Little Eventbrite</h1>
-    <h3 class="lead mt-3">Organisez ou participez à des événements passionnants partout en France.</h3>
-  </div>
-</section>
+<%= render partial: "shared/hero_banner" %>
 
+<h1 class="m-4">Evénement à venir</h1>
 <!-- Events List -->
-<section class="py-5">
-  <div class="container px-4 px-lg-5">
-    <h2 class="text-uppercase fw-bold text-center mb-5">Événements à venir</h2>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      <% @events.each do |event| %>
-        <div class="col">
-          <div class="card h-100 shadow border-0">
-            <div class="card-body">
-              <%= render event %>
-            </div>
-            <div class="card-footer bg-transparent text-center">
-              <%= link_to "Voir plus", event, class: "btn btn-outline-primary btn-xl text-uppercase fw-bold" %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+<div class="container my-5">
+  <div class="row g-4">
+    <% @events.each do |event| %>
+      <%= render partial: "event", locals: { event: event } %>
+    <% end %>
   </div>
-</section>
+</div>
