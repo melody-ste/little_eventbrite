@@ -6,6 +6,7 @@
 # docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name little_eventbrite little_eventbrite
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
+RUN apt-get update -qq && apt-get install -y postgresql-client libffi-dev libpq-dev
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.4.2
@@ -71,4 +72,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 EXPOSE 80
 CMD ["./bin/thrust", "./bin/rails", "server"]
 
-RUN apt-get update -qq && apt-get install -y postgresql-client libffi-dev libpq-dev
+
