@@ -70,3 +70,4 @@ gem 'stripe'
 gem 'table_print'
 gem 'faker'
 gem "image_processing", "~> 1.2"
+gem "dockerfile-rails", ">= 1.7", group: :development
